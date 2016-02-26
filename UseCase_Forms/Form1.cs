@@ -74,5 +74,20 @@ namespace UseCase_Forms
             //Force canvas refresh
             canvas.Invalidate();
         }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            //Change cursors based on tool context
+            if (rdoCreate.Checked)
+            {
+                Cursor.Current = Cursors.Hand;
+                Application.DoEvents();
+            }
+            else
+            {
+                Cursor.Current = Cursors.Default;
+                Application.DoEvents();
+            }
+        }
     }
 }

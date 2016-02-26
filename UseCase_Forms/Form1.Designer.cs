@@ -149,6 +149,7 @@
             this.Controls.Add(this.elementsGroup);
             this.Name = "Form1";
             this.Text = "Use Case Helper";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.elementsGroup.ResumeLayout(false);
             this.elementsGroup.PerformLayout();
             this.modesGroup.ResumeLayout(false);
