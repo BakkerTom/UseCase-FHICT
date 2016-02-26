@@ -41,6 +41,9 @@ namespace UseCase_Forms
                 {
                     //Add new actor to actor list
                     Point p = canvas.PointToClient(Cursor.Position);
+                    ActorForm form = new ActorForm();
+                    form.ShowDialog();
+
                     actorList.Add(new Actor(p, "Bob"));
 
                     //Force refresh
