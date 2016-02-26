@@ -7,3 +7,4 @@ C:\Users\Tom\Documents\Visual Studio 2015\Projects\UseCase_Forms\UseCase_Forms\o
 C:\Users\Tom\Documents\Visual Studio 2015\Projects\UseCase_Forms\UseCase_Forms\obj\Debug\UseCase_Forms.csproj.GenerateResource.Cache
 C:\Users\Tom\Documents\Visual Studio 2015\Projects\UseCase_Forms\UseCase_Forms\obj\Debug\UseCase_Forms.exe
 C:\Users\Tom\Documents\Visual Studio 2015\Projects\UseCase_Forms\UseCase_Forms\obj\Debug\UseCase_Forms.pdb
+C:\Users\Tom\Documents\Visual Studio 2015\Projects\UseCase_Forms\UseCase_Forms\obj\Debug\UseCase_Forms.csprojResolveAssemblyReference.cache

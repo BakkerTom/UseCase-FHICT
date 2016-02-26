@@ -39,12 +39,22 @@ namespace UseCase_Forms
                 //Check for creation mode
                 if (rdoActor.Checked) //Actor
                 {
-                    //Add new actor to actor list
+                    //Get information for actors
                     Point p = canvas.PointToClient(Cursor.Position);
-                    ActorForm form = new ActorForm();
-                    form.ShowDialog();
+                    string name = "Bob";
+                    Actor.Gender gender = Actor.Gender.male;
 
-                    actorList.Add(new Actor(p, "Bob"));
+                    //Creates new ActorForm and shows it
+                    ActorForm form = new ActorForm();
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        name = form.ReturnName;
+                        gender = form.ReturnGender;
+                    }
+
+                    //Add new actor to actor list
+                    actorList.Add(new Actor(p, name, gender));
 
                     //Force refresh
                     canvas.Invalidate();

@@ -17,9 +17,23 @@ namespace UseCase_Forms
             InitializeComponent();
         }
 
+        public string ReturnName { get; set; }
+        public Actor.Gender ReturnGender { get; set; }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ReturnName = txtName.Text;
+            if (rdoBoy.Checked) //Boy
+            {
+                ReturnGender = Actor.Gender.male;
+            }
+            else
+            {
+                ReturnGender = Actor.Gender.female;
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }
