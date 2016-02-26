@@ -110,6 +110,7 @@
             this.MaximumSize = new System.Drawing.Size(450, 325);
             this.MinimumSize = new System.Drawing.Size(450, 325);
             this.Name = "ActorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Actor";
             this.Load += new System.EventHandler(this.ActorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
