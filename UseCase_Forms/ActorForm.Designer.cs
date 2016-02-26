@@ -41,6 +41,7 @@
             // rdoBoy
             // 
             this.rdoBoy.AutoSize = true;
+            this.rdoBoy.Checked = true;
             this.rdoBoy.Location = new System.Drawing.Point(145, 89);
             this.rdoBoy.Name = "rdoBoy";
             this.rdoBoy.Size = new System.Drawing.Size(27, 26);
@@ -96,6 +97,7 @@
             // 
             // ActorForm
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 254);
@@ -109,6 +111,7 @@
             this.MinimumSize = new System.Drawing.Size(450, 325);
             this.Name = "ActorForm";
             this.Text = "New Actor";
+            this.Load += new System.EventHandler(this.ActorForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

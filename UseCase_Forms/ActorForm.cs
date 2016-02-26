@@ -35,5 +35,10 @@ namespace UseCase_Forms
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void ActorForm_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtName;
+        }
     }
 }

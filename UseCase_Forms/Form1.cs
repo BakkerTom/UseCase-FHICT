@@ -64,5 +64,20 @@ namespace UseCase_Forms
 
             }
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure?",
+                                     "Yes, Clear",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                // If 'Yes', do something here.
+                actorList.Clear();
+            }
+
+            //Force canvas refresh
+            canvas.Invalidate();
+        }
     }
 }
