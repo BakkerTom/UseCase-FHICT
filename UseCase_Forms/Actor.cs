@@ -4,8 +4,8 @@ namespace UseCase_Forms
 {
     public class Actor
     {
-        private Point locationPoint;
-
+        public Point locationPoint;
+        private bool isSelected = false;
         public enum Gender
         {
             male,
@@ -20,6 +20,24 @@ namespace UseCase_Forms
         }
         public string Name { get; private set; }
         public Gender ActorGender { get; set; }
+
+        public bool IsSelected {
+            get
+            {
+                return isSelected;   
+            }
+            set {
+                if (isSelected)
+                {
+                    isSelected = false;
+                }
+                else
+                {
+                    isSelected = true;
+                }
+            }
+        }
+
         private Image Icon {
             get
             {
@@ -41,7 +59,17 @@ namespace UseCase_Forms
 
             //Draws name
             Font drawFont = new Font("Arial", 12);
-            SolidBrush brush = new SolidBrush(Color.Black);
+            SolidBrush brush;
+
+            if (isSelected)
+            {
+                brush = new SolidBrush(Color.CornflowerBlue);
+            }
+            else
+            {
+                brush = new SolidBrush(Color.Black);
+            }
+
             g.DrawString(Name, drawFont, brush, locationPoint.X, locationPoint.Y + 80);
         }
 

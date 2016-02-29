@@ -28,6 +28,10 @@ namespace UseCase_Forms
 
         private void canvas_Click(object sender, EventArgs e)
         {
+
+            //Get click location
+            Point p = canvas.PointToClient(Cursor.Position);
+
             //Check for mode
             if (rdoCreate.Checked) // Create mode
             {
@@ -35,7 +39,6 @@ namespace UseCase_Forms
                 if (rdoActor.Checked) //Actor
                 {
                     //Get information for actors
-                    Point p = canvas.PointToClient(Cursor.Position);
                     string name = "Bob";
                     Actor.Gender gender = Actor.Gender.male;
 
@@ -56,7 +59,20 @@ namespace UseCase_Forms
                 }
             } else if (rdoSelect.Checked) //Select mode
             {
-
+                //Check to see if clicked within the frame of an actor
+                foreach (Actor a in actorList)
+                {
+                    //Check X-Axis
+                    if (p.X >= a.locationPoint.X && p.X <= a.locationPoint.X + 64)
+                    {
+                        //Check Y-Axis
+                        if (p.Y >= a.locationPoint.Y && p.Y <= a.locationPoint.Y +64)
+                        {
+                            a.IsSelected = true;
+                            canvas.Invalidate();
+                        }
+                    }
+                }
             }
         }
 
