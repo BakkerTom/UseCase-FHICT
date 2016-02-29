@@ -63,10 +63,17 @@ namespace UseCase_Forms
 
                     //Force refresh
                     canvas.Invalidate();
+
+                    //Enable selection mode
+                    rdoSelect.Checked = true;
                 } else if (rdoCase.Checked) //Case
                 {
                     caseList.Add(new Case("Nieuwe Case", p));
+                    
                     canvas.Invalidate();
+
+                    //Enable selection mode
+                    rdoSelect.Checked = true;
                 }
             } else if (rdoSelect.Checked) //Select mode
             {
@@ -96,6 +103,7 @@ namespace UseCase_Forms
             {
                 // If 'Yes', do something here.
                 actorList.Clear();
+                caseList.Clear();
             }
 
             //Force canvas refresh
