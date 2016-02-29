@@ -68,8 +68,22 @@ namespace UseCase_Forms
                     rdoSelect.Checked = true;
                 } else if (rdoCase.Checked) //Case
                 {
-                    caseList.Add(new Case("Nieuwe Case", p));
-                    
+                    Case c = new Case("Case", p);
+
+                    CaseForm form = new CaseForm();
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        c.Name = form.Name;
+                        c.Summary = form.Summary;
+                        c.Preconceptions = form.Preconceptions;
+                        c.Description = form.Description;
+                        c.Exceptions = form.Exceptions;
+                        c.Result = form.Result;
+                    }
+
+                    caseList.Add(c);
+
                     canvas.Invalidate();
 
                     //Enable selection mode

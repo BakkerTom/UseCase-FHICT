@@ -57,6 +57,12 @@
       <DependentUpon>ActorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Case.cs" />
+    <Compile Include="CaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CaseForm.Designer.cs">
+      <DependentUpon>CaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ActorForm.resx">
       <DependentUpon>ActorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CaseForm.resx">
+      <DependentUpon>CaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
