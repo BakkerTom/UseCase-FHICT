@@ -8,6 +8,7 @@ namespace UseCase_Forms
     public partial class Form1 : Form
     {
         private List<Actor> actorList = new List<Actor>();
+        private List<Case> caseList = new List<Case>(); 
 
         public Form1()
         {
@@ -23,6 +24,12 @@ namespace UseCase_Forms
             foreach (Actor a in actorList)
             {   
                 a.DrawActor(g);
+            }
+
+            //Draw all cases in caseList
+            foreach (Case c in caseList)
+            {
+                c.drawCase(g);
             }
         }
 
@@ -56,6 +63,17 @@ namespace UseCase_Forms
 
                     //Force refresh
                     canvas.Invalidate();
+
+                    //Enable selection mode
+                    rdoSelect.Checked = true;
+                } else if (rdoCase.Checked) //Case
+                {
+                    caseList.Add(new Case("Nieuwe Case", p));
+                    
+                    canvas.Invalidate();
+
+                    //Enable selection mode
+                    rdoSelect.Checked = true;
                 }
             } else if (rdoSelect.Checked) //Select mode
             {
@@ -85,6 +103,7 @@ namespace UseCase_Forms
             {
                 // If 'Yes', do something here.
                 actorList.Clear();
+                caseList.Clear();
             }
 
             //Force canvas refresh
