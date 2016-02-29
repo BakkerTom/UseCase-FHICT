@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace UseCase_Forms
 {
@@ -69,8 +70,9 @@ namespace UseCase_Forms
             {
                 brush = new SolidBrush(Color.Black);
             }
-
-            g.DrawString(Name, drawFont, brush, locationPoint.X, locationPoint.Y + 80);
+            var textWidth = g.MeasureString(Name, drawFont);
+            var textLocation = (locationPoint.X - (textWidth.Width/2)) + 32;
+            g.DrawString(Name, drawFont, brush, textLocation, locationPoint.Y + 80);
         }
 
     }
