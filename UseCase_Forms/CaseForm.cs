@@ -12,6 +12,7 @@ namespace UseCase_Forms
 {
     public partial class CaseForm : Form
     {
+
         public CaseForm()
         {
             InitializeComponent();
@@ -41,6 +42,16 @@ namespace UseCase_Forms
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void CaseForm_Load(object sender, EventArgs e)
+        {
+            txtName.Text = Name;
+            txtSummary.Text = Summary;
+            txtPreconceptions.Text = Preconceptions;
+            txtDescription.Text = Description;
+            txtExceptions.Text = Exceptions;
+            txtResults.Text = Result;
         }
     }
 }

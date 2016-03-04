@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UseCase_Forms
 {
-    class Case
+    public class Case
     {
         Font drawFont = new Font("Arial", 14);
         SizeF frame = new SizeF();

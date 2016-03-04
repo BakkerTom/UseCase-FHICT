@@ -183,6 +183,7 @@
             // 
             // CaseForm
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 711);
@@ -204,6 +205,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CaseForm";
             this.Text = "Properties";
+            this.Load += new System.EventHandler(this.CaseForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
