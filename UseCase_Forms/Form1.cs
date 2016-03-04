@@ -115,6 +115,9 @@ namespace UseCase_Forms
                     if ((p.X >= c.Location.X && p.X <= c.Location.X + c.Frame.Width) &&
                         (p.Y >= c.Location.Y && p.Y <= c.Location.Y + c.Frame.Height))
                     {
+                        c.IsSelected = true;
+                        canvas.Invalidate();
+
                         CaseForm form = new CaseForm();
 
                         form.Name = c.Name;
@@ -124,10 +127,21 @@ namespace UseCase_Forms
                         form.Summary = c.Summary;
                         form.Result = c.Result;
 
-                        form.Show();
+                        var result = form.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            c.Name = form.Name;
+                            c.Summary = form.Summary;
+                            c.Preconceptions = form.Preconceptions;
+                            c.Description = form.Description;
+                            c.Exceptions = form.Exceptions;
+                            c.Result = form.Result;
 
-                        c.IsSelected = true;
-                        canvas.Invalidate();
+                            c.IsSelected = false;
+                            canvas.Invalidate();
+                        }
+                        
+                        
                     }
                 }
             }
