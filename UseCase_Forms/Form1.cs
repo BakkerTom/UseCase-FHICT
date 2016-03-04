@@ -8,7 +8,7 @@ namespace UseCase_Forms
     public partial class Form1 : Form
     {
         private List<Actor> actorList = new List<Actor>();
-        private List<Case> caseList = new List<Case>(); 
+        private List<Case> caseList = new List<Case>();
 
         public Form1()
         {
@@ -19,10 +19,10 @@ namespace UseCase_Forms
         {
             //Gets the Graphics object from the canvas
             Graphics g = canvas.CreateGraphics();
-            
+
             //Draw all actors in actorList
             foreach (Actor a in actorList)
-            {   
+            {
                 a.DrawActor(g);
             }
 
@@ -56,57 +56,72 @@ namespace UseCase_Forms
                     {
                         name = form.ReturnName;
                         gender = form.ReturnGender;
-                    }
 
-                    //Add new actor to actor list
-                    actorList.Add(new Actor(p, name, gender));
+                        //Add new actor to actor list
+                        actorList.Add(new Actor(p, name, gender));
+                    }
 
                     //Force refresh
                     canvas.Invalidate();
 
                     //Enable selection mode
                     rdoSelect.Checked = true;
-                } else if (rdoCase.Checked) //Case
+                }
+                else if (rdoCase.Checked) //Case
                 {
-                    Case c = new Case("Case", p);
+
 
                     CaseForm form = new CaseForm();
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
                     {
+                        Case c = new Case("Case", p);
+
                         c.Name = form.Name;
                         c.Summary = form.Summary;
                         c.Preconceptions = form.Preconceptions;
                         c.Description = form.Description;
                         c.Exceptions = form.Exceptions;
                         c.Result = form.Result;
-                    }
 
-                    caseList.Add(c);
+                        caseList.Add(c);
+                    }
 
                     canvas.Invalidate();
 
                     //Enable selection mode
                     rdoSelect.Checked = true;
                 }
-            } else if (rdoSelect.Checked) //Select mode
+            }
+            else if (rdoSelect.Checked) //Select mode
             {
                 //Check to see if clicked within the frame of an actor
                 foreach (Actor a in actorList)
                 {
                     //Check X-Axis
-                    if (p.X >= a.locationPoint.X && p.X <= a.locationPoint.X + 64)
+                    if ((p.X >= a.locationPoint.X && p.X <= a.locationPoint.X + 64) && (p.Y >= a.locationPoint.Y && p.Y <= a.locationPoint.Y + 64))
                     {
-                        //Check Y-Axis
-                        if (p.Y >= a.locationPoint.Y && p.Y <= a.locationPoint.Y +64)
-                        {
-                            a.IsSelected = true;
-                            canvas.Invalidate();
-                        }
+                       
+                        a.IsSelected = true;
+                        canvas.Invalidate();
+
+                    }
+
+                }
+
+                //Check to see if clicked within the frame of a Case
+                foreach (Case c in caseList)
+                {
+                    if ((p.X >= c.Location.X && p.X <= c.Location.X + c.Frame.Width) &&
+                        (p.Y >= c.Location.Y && p.Y <= c.Location.Y + c.Frame.Height))
+                    {
+                        c.IsSelected = true;
+                        canvas.Invalidate();
                     }
                 }
             }
         }
+
 
         private void btnClear_Click(object sender, EventArgs e)
         {
