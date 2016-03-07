@@ -127,6 +127,8 @@
             this.canvas.TabIndex = 4;
             this.canvas.Click += new System.EventHandler(this.canvas_Click);
             this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Paint);
+            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
             // 
             // btnClear
             // 
