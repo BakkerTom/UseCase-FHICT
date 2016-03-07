@@ -48,9 +48,7 @@ namespace UseCase_Forms
 
             //Get click location
             Point p = canvas.PointToClient(Cursor.Position);
-
-            //Check for mode
-            if (rdoCreate.Checked) // Create mode
+            if (rdoCreate.Checked) //Create mode
             {
                 //Check for creation mode
                 if (rdoActor.Checked) //Actor
@@ -102,58 +100,57 @@ namespace UseCase_Forms
                     //Enable selection mode
                     rdoSelect.Checked = true;
                 }
-                
-                else if (rdoSelect.Checked) //Select mode
+            }
+            else if (rdoSelect.Checked)
+            {
+                //Check to see if clicked within the frame of an actor
+                foreach (Actor a in actorList)
                 {
-                    //Check to see if clicked within the frame of an actor
-                    foreach (Actor a in actorList)
+                    //Check X-Axis
+                    if ((p.X >= a.locationPoint.X && p.X <= a.locationPoint.X + 64) &&
+                        (p.Y >= a.locationPoint.Y && p.Y <= a.locationPoint.Y + 64))
                     {
-                        //Check X-Axis
-                        if ((p.X >= a.locationPoint.X && p.X <= a.locationPoint.X + 64) &&
-                            (p.Y >= a.locationPoint.Y && p.Y <= a.locationPoint.Y + 64))
-                        {
 
-                            a.IsSelected = true;
-                            canvas.Invalidate();
-
-                        }
+                        a.IsSelected = true;
+                        canvas.Invalidate();
 
                     }
 
-                    //Check to see if clicked within the frame of a Case
-                    foreach (Case c in caseList)
+                }
+
+                //Check to see if clicked within the frame of a Case
+                foreach (Case c in caseList)
+                {
+                    if ((p.X >= c.Location.X && p.X <= c.Location.X + c.Frame.Width) &&
+                        (p.Y >= c.Location.Y && p.Y <= c.Location.Y + c.Frame.Height))
                     {
-                        if ((p.X >= c.Location.X && p.X <= c.Location.X + c.Frame.Width) &&
-                            (p.Y >= c.Location.Y && p.Y <= c.Location.Y + c.Frame.Height))
+                        c.IsSelected = true;
+                        canvas.Invalidate();
+
+                        CaseForm form = new CaseForm();
+
+                        form.Name = c.Name;
+                        form.Description = c.Description;
+                        form.Exceptions = c.Exceptions;
+                        form.Preconceptions = c.Preconceptions;
+                        form.Summary = c.Summary;
+                        form.Result = c.Result;
+
+                        var result = form.ShowDialog();
+                        if (result == DialogResult.OK)
                         {
-                            c.IsSelected = true;
+                            c.Name = form.Name;
+                            c.Summary = form.Summary;
+                            c.Preconceptions = form.Preconceptions;
+                            c.Description = form.Description;
+                            c.Exceptions = form.Exceptions;
+                            c.Result = form.Result;
+
+                            c.IsSelected = false;
                             canvas.Invalidate();
-
-                            CaseForm form = new CaseForm();
-
-                            form.Name = c.Name;
-                            form.Description = c.Description;
-                            form.Exceptions = c.Exceptions;
-                            form.Preconceptions = c.Preconceptions;
-                            form.Summary = c.Summary;
-                            form.Result = c.Result;
-
-                            var result = form.ShowDialog();
-                            if (result == DialogResult.OK)
-                            {
-                                c.Name = form.Name;
-                                c.Summary = form.Summary;
-                                c.Preconceptions = form.Preconceptions;
-                                c.Description = form.Description;
-                                c.Exceptions = form.Exceptions;
-                                c.Result = form.Result;
-
-                                c.IsSelected = false;
-                                canvas.Invalidate();
-                            }
-
-
                         }
+
+
                     }
                 }
             }
@@ -170,6 +167,7 @@ namespace UseCase_Forms
                 // If 'Yes', do something here.
                 actorList.Clear();
                 caseList.Clear();
+                lineList.Clear();
             }
 
             //Force canvas refresh
